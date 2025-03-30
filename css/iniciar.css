@@ -1,0 +1,289 @@
+/* ========== ESTILOS BASE ========== */
+/* Estilos generales para el cuerpo del documento */
+body {
+    background-image: url("../recursos/8.jpg");
+    /* Imagen de fondo */
+    background-size: cover;
+    /* La imagen cubre todo el espacio */
+    background-position: center;
+    /* Centra la imagen */
+    font-family: 'Roboto', sans-serif;
+    /* Fuente principal */
+    margin: 0;
+    /* Elimina márgenes por defecto */
+    padding: 0;
+    /* Elimina padding por defecto */
+    min-height: 100vh;
+    /* Altura mínima de toda la ventana */
+    display: flex;
+    /* Usa flexbox para centrado */
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: center;
+    /* Centrado vertical */
+}
+
+/* ========== CONTENEDOR DEL FORMULARIO ========== */
+/* Estilos para el contenedor principal del formulario */
+.form-container {
+    background-color: rgb(197, 202, 250);
+    /* Color de fondo */
+    padding: 25px;
+    /* Espaciado interno */
+    width: 380px;
+    /* Ancho fijo */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+/* Estilo para el título del formulario */
+.form-container h2 {
+    text-align: center;
+    /* Texto centrado */
+    color: #1e428f;
+    /* Color del texto */
+    margin-bottom: 20px;
+    /* Margen inferior */
+}
+
+/* ========== GRUPOS DE FORMULARIO ========== */
+/* Estilos para cada grupo de campos del formulario */
+.form-group {
+    margin-bottom: 1.2rem;
+    /* Espaciado entre grupos */
+    width: 95%;
+    /* Ancho casi completo */
+    position: relative;
+    /* Para posicionamiento de elementos hijos */
+}
+
+/* Estilos para las etiquetas de los campos */
+.form-group label {
+    display: block;
+    /* Hace que ocupe toda la línea */
+    margin-bottom: 5px;
+    /* Espaciado inferior */
+    color: #1e428f;
+    /* Color del texto */
+    font-weight: 500;
+    /* Grosor de la fuente */
+}
+
+/* ========== CAMPOS DE ENTRADA ========== */
+/* Estilos para los inputs del formulario */
+.form-group input {
+    width: 100%;
+    /* Ancho completo */
+    padding: 10px;
+    /* Espaciado interno */
+    border: 1px solid #1e428f;
+    /* Borde delgado */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    font-size: 1rem;
+    /* Tamaño de fuente */
+}
+
+/* ========== SECCIÓN DE CONTRASEÑA ========== */
+/* Grupo especial para campos de contraseña */
+.password-group {
+    margin-bottom: 0.5rem;
+    /* Margen inferior reducido */
+}
+
+/* Contenedor para el input de contraseña */
+.password-wrapper {
+    position: relative;
+    /* Para posicionar el ícono */
+}
+
+/* Ícono para mostrar/ocultar contraseña */
+.toggle-password {
+    position: absolute;
+    /* Posicionamiento absoluto */
+    right: 10px;
+    /* Distancia desde la derecha */
+    top: 50%;
+    /* Centrado vertical */
+    transform: translateY(-50%);
+    /* Centrado preciso */
+    cursor: pointer;
+    /* Cambia el cursor al pasar */
+    color: #1e428f;
+    /* Color del ícono */
+    font-size: 1.3rem;
+    /* Tamaño del ícono */
+}
+
+/* Enlace "Olvidé mi contraseña" */
+.forgot-password {
+    text-align: right;
+    /* Alineado a la derecha */
+    margin: 5px 0 0 0;
+    /* Margen superior */
+}
+
+.forgot-password a {
+    color: #1e428f;
+    /* Color del enlace */
+    font-size: 0.8rem;
+    /* Tamaño de fuente pequeño */
+    text-decoration: none;
+    /* Sin subrayado */
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+    /* Subrayado al pasar el mouse */
+}
+
+/* ========== BOTÓN PRINCIPAL ========== */
+/* Estilos para el botón de enviar */
+.btn-submit {
+    width: 100%;
+    /* Ancho completo */
+    padding: 12px;
+    /* Espaciado interno */
+    background-color: #465ec9;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    font-size: 1rem;
+    /* Tamaño de fuente */
+    cursor: pointer;
+    /* Cambia el cursor al pasar */
+    margin-top: 10px;
+    /* Margen superior */
+    transition: background-color 0.3s;
+    /* Transición suave para hover */
+}
+
+.btn-submit:hover {
+    background-color: #0c1e88;
+    /* Color oscuro al pasar el mouse */
+}
+
+/* ========== ENLACE "CREAR CUENTA" ========== */
+/* Sección para crear nueva cuenta */
+.create-account {
+    text-align: center;
+    /* Texto centrado */
+    margin: 15px 0;
+    /* Margen vertical */
+}
+
+.create-account a {
+    color: #1e428f;
+    /* Color del enlace */
+    text-decoration: none;
+    /* Sin subrayado */
+}
+
+.create-account a:hover {
+    text-decoration: underline;
+    /* Subrayado al pasar el mouse */
+}
+
+/* ========== DIVISOR SOCIAL ========== */
+/* Línea divisoria para sección de login social */
+.social-divider {
+    text-align: center;
+    /* Centrado del texto */
+    position: relative;
+    /* Para posicionar la línea */
+    margin: 20px 0;
+    /* Margen vertical */
+}
+
+/* Texto del divisor */
+.social-divider p {
+    display: inline-block;
+    /* Permite fondo detrás del texto */
+    background-color: rgb(197, 202, 250);
+    /* Mismo color que el fondo del form */
+    padding: 0 10px;
+    /* Espaciado horizontal */
+    position: relative;
+    /* Para traer al frente */
+    z-index: 1;
+    /* Capa superior */
+    color: #1e428f;
+    /* Color del texto */
+    margin: 0;
+    /* Sin margen */
+}
+
+/* Línea del divisor */
+.social-divider::before {
+    content: "";
+    /* Necesario para pseudo-elementos */
+    position: absolute;
+    /* Posicionamiento absoluto */
+    top: 50%;
+    /* Centrado vertical */
+    left: 0;
+    /* Desde el borde izquierdo */
+    right: 0;
+    /* Hasta el borde derecho */
+    height: 1px;
+    /* Grosor de la línea */
+    background-color: #1e428f;
+    /* Color de la línea */
+    z-index: 0;
+    /* Capa inferior */
+}
+
+/* ========== BOTONES SOCIALES ========== */
+/* Contenedor para botones de login social */
+.social-buttons {
+    display: flex;
+    /* Usa flexbox */
+    flex-direction: column;
+    /* Disposición vertical */
+    gap: 10px;
+    /* Espacio entre botones */
+}
+
+/* Estilos para botones sociales */
+.btn-social {
+    padding: 10px;
+    /* Espaciado interno */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    border: 1px solid #1e428f;
+    /* Borde delgado */
+    background-color: rgb(197, 202, 250);
+    /* Color de fondo */
+    color: #1e428f;
+    /* Color del texto */
+    cursor: pointer;
+    /* Cambia el cursor al pasar */
+    font-size: 0.9rem;
+    /* Tamaño de fuente */
+    transition: all 0.3s;
+    /* Transición suave para hover */
+}
+
+.btn-social:hover {
+    background-color: #465ec9;
+    /* Color de fondo al pasar mouse */
+    color: white;
+    /* Color del texto al pasar mouse */
+}
+
+/* ========== DISEÑO RESPONSIVE ========== */
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    .form-container {
+        width: 90%;
+        /* Ancho relativo a la pantalla */
+        padding: 20px;
+        /* Espaciado interno */
+    }
+}

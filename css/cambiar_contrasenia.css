@@ -1,0 +1,69 @@
+body {
+    background: url('../recursos/8.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    background: #A0A7E6;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    color: #555;
+    font-size: 14px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    background: #1D4ED8;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1E40AF;
+}
+
+.back-link {
+    margin-top: 10px;
+}
+
+.back-link a {
+    color: #1D4ED8;
+    text-decoration: none;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}

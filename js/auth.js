@@ -1,0 +1,1 @@
+/* aca iran todos los js generales que se apliquen y no se modifiquen en todos las paginas*/
