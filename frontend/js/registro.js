@@ -59,32 +59,58 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('registerForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Verificar coincidencia de contraseñas
+    // Validar coincidencia de contraseñas
     if (!validatePasswordMatch()) {
       confirmPasswordInput.focus();
       return;
     }
 
-    // Verificar el código
-    const email = emailInput.value.trim();
-    const code = document.getElementById('verification_code').value.trim();
+    // Obtener datos del formulario
+    const formData = {
+      nombre: document.getElementById('nombre').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      password: document.getElementById('password').value,
+      genero: document.getElementById('genero').value,
+      ciudad: document.getElementById('ciudad').value,
+      pais: document.getElementById('pais').value,
+      verification_code: document.getElementById('verification_code').value.trim()
+    };
 
     try {
-      const response = await fetch('http://localhost:3000/api/verify-code', {
+      // Primero verificar el código
+      const verifyResponse = await fetch('http://localhost:3000/api/verify-code', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, code }),
+        body: JSON.stringify({
+          email: formData.email,
+          code: formData.verification_code
+        }),
       });
 
-      const data = await response.json();
+      const verifyData = await verifyResponse.json();
 
-      if (response.ok) {
-        // Si el código es válido, enviar el formulario
-        this.submit();
+      if (!verifyResponse.ok) {
+        throw new Error(verifyData.error || 'Código de verificación inválido');
+      }
+
+      // Si el código es válido, proceder con el registro
+      const registerResponse = await fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const registerData = await registerResponse.json();
+
+      if (registerResponse.ok) {
+        alert('Registro exitoso! Serás redirigido para iniciar sesión.');
+        window.location.href = 'iniciar_sesion.html';
       } else {
-        throw new Error(data.error || 'Código de verificación inválido');
+        throw new Error(registerData.error || 'Error en el registro');
       }
     } catch (error) {
       console.error('Error:', error);
