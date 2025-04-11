@@ -1,0 +1,663 @@
+/* ========== VARIABLES GLOBALES ========== */
+/* Define variables CSS reutilizables para colores y estilos */
+:root {
+  --primary-color: #465ec9;
+  /* Color primario azul para botones principales */
+  --secondary-color: #0c1e88;
+  /* Color secundario azul oscuro para hover/efectos */
+  --error-color: #d32f2f;
+  /* Rojo para mensajes de error */
+  --success-color: #2e7d32;
+  /* Verde para mensajes de éxito */
+  --text-color: #333;
+  /* Color principal para texto */
+  --border-color: #1e428f;
+  /* Color para bordes de inputs */
+  --background-color: rgb(197, 202, 250);
+  /* Color de fondo del formulario */
+  --white: #ffffff;
+  /* Blanco puro para contrastes */
+}
+
+/* ========== ESTILOS GENERALES ========== */
+/* Estilos base para el cuerpo del documento */
+body {
+  background-image: url("../recursos/8.jpg");
+  /* Imagen de fondo */
+  background-size: cover;
+  /* Cubre toda el área */
+  background-position: center;
+  /* Centra la imagen */
+  background-repeat: no-repeat;
+  /* Evita repetición */
+  background-attachment: fixed;
+  /* Fondo fijo al hacer scroll */
+  font-family: 'Roboto', sans-serif;
+  /* Fuente principal */
+  margin: 0;
+  /* Elimina márgenes por defecto */
+  padding: 0;
+  /* Elimina padding por defecto */
+  min-height: 100vh;
+  /* Altura mínima de viewport */
+}
+
+/* ========== CONTENEDOR DEL FORMULARIO ========== */
+/* Estilos para el contenedor principal del formulario */
+.form-container {
+  background-color: rgb(197, 202, 250);
+  /* Color de fondo */
+  padding: 20px;
+  /* Espaciado interno */
+  margin: 20px auto;
+  /* Centrado con margen superior/inferior */
+  width: 100%;
+  /* Ancho completo (responsive) */
+  max-width: 420px;
+  /* Ancho máximo en pantallas grandes */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(54, 216, 40, 0.1);
+  /* Sombra sutil */
+  box-sizing: border-box;
+  /* Modelo de caja mejorado */
+  overflow: hidden;
+  /* Evita desbordamientos */
+}
+
+/* Estilo para el título del formulario */
+h2 {
+  text-align: center;
+  /* Centrado horizontal */
+  color: #1e428f;
+  /* Color del texto */
+  margin-top: 5px;
+  /* Margen superior reducido */
+}
+
+/* ========== GRUPOS DE CAMPOS ========== */
+/* Estilos base para grupos de formulario */
+.form-group,
+.cajita {
+  margin-bottom: 1rem;
+  /* Espaciado entre grupos */
+  width: 100%;
+  /* Ancho completo */
+  box-sizing: border-box;
+  /* Incluye padding en el ancho */
+}
+
+/* Estilos para el wrapper de email */
+.email-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+/* Comentario de código antiguo (se mantiene como referencia)
+.cajita,
+.form-group {
+  margin-top: -12px;
+  margin-bottom: 1rem;
+}
+*/
+
+/* ========== ETIQUETAS ========== */
+/* Estilos para etiquetas normales */
+label {
+  position: relative;
+  /* Posicionamiento relativo */
+  top: 18px;
+  /* Desplazamiento vertical */
+  left: 15px;
+  /* Desplazamiento horizontal */
+  background-image: linear-gradient(var(--background-color) 65%, var(--white) 35%);
+  /* Efecto de recorte */
+  z-index: 1;
+  /* Capa superior */
+  padding: 0 5px;
+  /* Espaciado interno */
+}
+
+/* Estilos especiales para etiquetas de selects */
+.se,
+.se1,
+.se2 {
+  position: relative;
+  /* Posicionamiento relativo */
+  top: -15px;
+  /* Ajuste vertical */
+  background-image: linear-gradient(var(--background-color) 65%, var(--white) 35%);
+  /* Efecto de recorte */
+  z-index: 1;
+  /* Capa superior */
+  padding: 0 5px;
+  /* Espaciado interno */
+}
+
+/* Ajustes específicos para posicionamiento */
+.se1 {
+  left: 35px;
+  /* Desplazamiento horizontal */
+}
+
+.se2 {
+  left: 45px;
+  /* Desplazamiento horizontal */
+}
+
+/* ========== CAMPOS DE ENTRADA ========== */
+/* Estilos para inputs y selects normales */
+input,
+select {
+  width: 100%;
+  /* Ancho completo */
+  padding: 10px;
+  /* Espaciado interno */
+  margin: 8px 0;
+  /* Margen vertical */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  border: 1px solid #1e428f;
+  /* Borde delgado */
+  box-sizing: border-box;
+  /* Modelo de caja mejorado */
+  font-size: 0.9rem;
+  /* Tamaño de fuente */
+}
+
+/* Ajuste para el input de email */
+#email {
+  flex-grow: 1;
+}
+
+/* Estilos específicos para selects */
+select {
+  width: 26%;
+  /* Ancho reducido */
+  margin-left: -30px;
+  /* Margen negativo para alineación */
+}
+
+/* ========== CAMPOS DE CONTRASEÑA ========== */
+/* Contenedor para grupo de contraseña */
+.password-group {
+  position: relative;
+  /* Para posicionar icono absolutamente */
+  width: 100%;
+  /* Ancho completo */
+}
+
+/* Wrapper para input + ícono */
+.password-wrapper {
+  position: relative;
+  /* Contexto para posicionamiento */
+  width: 100%;
+  /* Ancho completo */
+}
+
+/* Estilos para el ícono de mostrar/ocultar contraseña */
+.bx-show-alt,
+.bx-hide,
+.toggle-password {
+  position: absolute;
+  /* Posicionamiento absoluto */
+  right: 10px;
+  /* Distancia desde derecha */
+  top: 50%;
+  /* Centrado vertical */
+  transform: translateY(-50%);
+  /* Centrado preciso */
+  font-size: 1.25rem;
+  /* Tamaño del ícono */
+  cursor: pointer;
+  /* Cursor tipo pointer */
+  color: var(--primary-color);
+  /* Color del ícono */
+  z-index: 2;
+  /* Capa superior */
+  background: transparent;
+  /* Fondo transparente */
+  border: none;
+  /* Sin borde */
+  padding: 0;
+  /* Sin padding */
+}
+
+/* Ajuste para inputs de contraseña */
+#password,
+#confirm_password {
+  padding-right: 35px;
+  /* Espacio para el ícono */
+  width: 100%;
+  /* Ancho completo */
+}
+
+/* ========== BOTONES ========== */
+/* Estilos base para botones */
+button,
+.btn-submit {
+  margin-left: 25%;
+  /* Margen izquierdo */
+  width: 50%;
+  /* Ancho relativo */
+  background-color: var(--primary-color);
+  /* Color de fondo */
+  border-color: var(--secondary-color);
+  /* Color de borde */
+  color: white;
+  /* Color de texto */
+  cursor: pointer;
+  /* Cursor tipo pointer */
+  padding: 8px;
+  /* Espaciado interno */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  font-size: 1rem;
+  /* Tamaño de fuente */
+  min-width: 200px;
+  /* Ancho mínimo */
+  margin: 15px auto;
+  /* Margen y centrado */
+  display: block;
+  /* Comportamiento de bloque */
+}
+
+/* Estilos para el botón de enviar código */
+.btn-send-code {
+  padding: 0.5rem 0.5rem;
+  /* Reducir padding horizontal */
+  background-color: #465ec9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  /* Tamaño de fuente más pequeño */
+  white-space: nowrap;
+  transition: background-color 0.3s;
+  width: 23%;
+  /* Menos de 1/4 (25%) */
+  min-width: 80px;
+  /* Ancho mínimo para que el texto quede bien */
+  max-width: 100px;
+  /* Ancho máximo opcional */
+  flex-shrink: 0;
+  /* Evita que se reduzca más allá del ancho especificado */
+}
+
+.btn-send-code:hover {
+  background-color: #0c1e88;
+}
+
+.btn-send-code:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Estilos específicos para botón de submit */
+.btn-submit {
+  background-color: #465ec9;
+  /* Color de fondo */
+  color: white;
+  /* Color de texto */
+  padding: 0.75rem 2rem;
+  /* Espaciado interno */
+  border: none;
+  /* Sin borde */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  cursor: pointer;
+  /* Cursor tipo pointer */
+  font-size: 1rem;
+  /* Tamaño de fuente */
+  min-width: 200px;
+  /* Ancho mínimo */
+  transition: background-color 0.3s;
+  /* Transición suave */
+}
+
+/* Efecto hover para botón submit */
+.btn-submit:hover {
+  background-color: #0c1e88;
+  /* Color oscuro al pasar mouse */
+}
+
+/* Efecto hover genérico para botones */
+button:hover,
+.btn-submit:hover {
+  background-color: var(--secondary-color);
+  /* Color secundario */
+}
+
+/* ========== MENSAJES DE VALIDACIÓN ========== */
+/* Estilos base para mensajes */
+.validation-message,
+#error_mensaje {
+  font-size: 0.8rem;
+  /* Tamaño de fuente pequeño */
+  margin-top: 0.2rem;
+  /* Margen superior */
+  padding: 0 5px;
+  /* Espaciado interno */
+  word-break: break-word;
+  /* Rompe palabras largas */
+}
+
+/* Estilos específicos para mensajes de validación */
+.validation-message {
+  font-size: 0.875rem;
+  /* Tamaño de fuente */
+  margin-top: 0.25rem;
+  /* Margen superior */
+  padding-left: 15px;
+  /* Espaciado izquierdo */
+}
+
+/* Variante para mensajes de error */
+.validation-message.error {
+  color: var(--error-color);
+  /* Color rojo */
+}
+
+/* Variante para mensajes de éxito */
+.validation-message.success {
+  color: var(--success-color);
+  /* Color verde */
+}
+
+/* Estilos para mensaje de error específico */
+#error_mensaje {
+  color: rgb(87, 7, 73);
+  /* Color morado oscuro */
+  font-size: 0.875rem;
+  /* Tamaño de fuente */
+  padding-left: 15px;
+  /* Espaciado izquierdo */
+}
+
+/* ========== ENLACES ========== */
+/* Estilos base para enlaces */
+a {
+  color: #230e6e;
+  /* Color del texto */
+  font-size: medium;
+  /* Tamaño de fuente */
+  text-decoration: none;
+  /* Sin subrayado */
+}
+
+/* Contenedor principal para enlaces */
+.form-links-container {
+  text-align: center;
+  /* Centrado horizontal */
+  margin-top: 1.5rem;
+  /* Margen superior */
+}
+
+/* Estilos para enlaces de formulario */
+.form-link {
+  color: #465ec9;
+  /* Color azul */
+  text-decoration: none;
+  /* Sin subrayado */
+  margin: 0 15px;
+  /* Margen horizontal */
+  font-size: 0.9rem;
+  /* Tamaño de fuente */
+  padding: 0.5rem;
+  /* Espaciado interno */
+  transition: color 0.3s;
+  /* Transición suave */
+}
+
+/* Efecto hover para enlaces */
+.form-link:hover {
+  color: #0c1e88;
+  /* Color oscuro */
+  text-decoration: underline;
+  /* Subrayado al pasar mouse */
+}
+
+/* Contenedor alternativo para enlaces */
+.links-container {
+  text-align: center;
+  /* Centrado horizontal */
+  margin-top: 1rem;
+  /* Margen superior */
+  padding-top: 1rem;
+  /* Espaciado superior */
+  border-top: 1px solid #ddd;
+  /* Borde superior */
+}
+
+/* Estilos para listas no ordenadas */
+ul {
+  text-align: center;
+  /* Centrado horizontal */
+  list-style: none;
+  /* Sin viñetas */
+  padding: 0;
+  /* Sin padding */
+}
+
+/* ========== COMPONENTES ESPECIALES ========== */
+/* Contenedor para reCAPTCHA */
+.mb-3,
+.captcha-container {
+  margin: 1.5rem 0;
+  /* Margen vertical */
+  display: flex;
+  /* Flexbox para centrado */
+  justify-content: center;
+  /* Centrado horizontal */
+  width: 100%;
+  /* Ancho completo */
+}
+
+/* Contenedor para botones */
+.button-container {
+  text-align: center;
+  /* Centrado horizontal */
+  margin: 1.5rem 0;
+  /* Margen vertical */
+}
+
+/* Fila para agrupar campos (país, ciudad, género) */
+.form-row {
+  display: flex;
+  /* Flexbox para disposición */
+  flex-wrap: wrap;
+  /* Permite salto de línea */
+  gap: 10px;
+  /* Espacio entre elementos */
+  margin-bottom: 1rem;
+  /* Margen inferior */
+  align-items: flex-end;
+  /* Alineación en parte inferior */
+}
+
+/* Grupos dentro de la fila */
+.form-row .form-group {
+  flex: 1;
+  /* Crecimiento flexible */
+  min-width: 120px;
+  /* Ancho mínimo */
+}
+
+/* Selects dentro de la fila */
+.form-row select {
+  width: 100%;
+  /* Ancho completo */
+  margin: 5px 0 0 0;
+  /* Margen ajustado */
+  padding: 8px;
+  /* Espaciado interno */
+  border: 1px solid #1e428f;
+  /* Borde delgado */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  background-color: white;
+  /* Fondo blanco */
+}
+
+/* Etiquetas dentro de la fila */
+.form-row label {
+  position: static;
+  /* Posición normal */
+  background-image: none;
+  /* Sin fondo especial */
+  padding: 0;
+  /* Sin padding */
+  margin-bottom: 5px;
+  /* Margen inferior */
+  display: block;
+  /* Comportamiento de bloque */
+  background: transparent;
+  /* Fondo transparente */
+  font-weight: 500;
+  /* Grosor de fuente */
+}
+
+/* ========== CONTENEDORES DE ACCIONES ========== */
+/* Contenedor principal para acciones */
+.form-actions {
+  display: flex;
+  /* Flexbox para disposición */
+  flex-direction: column;
+  /* Dirección vertical */
+  align-items: center;
+  /* Centrado horizontal */
+  gap: 1rem;
+  /* Espacio entre elementos */
+  margin-top: 1.5rem;
+  /* Margen superior */
+  width: 100%;
+  /* Ancho completo */
+}
+
+/* Contenedor para botones secundarios */
+.secondary-buttons {
+  display: flex;
+  /* Flexbox para disposición */
+  justify-content: center;
+  /* Centrado horizontal */
+  gap: 1rem;
+  /* Espacio entre elementos */
+  width: 100%;
+  /* Ancho completo */
+  padding-top: 1rem;
+  /* Espaciado superior */
+  border-top: 1px solid #e0e0e0;
+  /* Borde superior */
+}
+
+/* Estilos para botones secundarios */
+.btn-secondary {
+  padding: 0.6rem 1.2rem;
+  /* Espaciado interno */
+  background-color: #f0f0f0;
+  /* Color de fondo */
+  color: #465ec9;
+  /* Color de texto */
+  text-decoration: none;
+  /* Sin subrayado */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  border: 1px solid #465ec9;
+  /* Borde delgado */
+  font-size: 0.9rem;
+  /* Tamaño de fuente */
+  transition: all 0.3s;
+  /* Transición suave */
+  text-align: center;
+  /* Texto centrado */
+  min-width: 120px;
+  /* Ancho mínimo */
+}
+
+/* Efecto hover para botones secundarios */
+.btn-secondary:hover {
+  background-color: #465ec9;
+  /* Color de fondo */
+  color: white;
+  /* Color de texto */
+}
+
+/* ========== DISEÑO RESPONSIVE ========== */
+/* Media query para pantallas pequeñas (<600px) */
+@media (max-width: 600px) {
+
+  /* Cambia dirección de la fila a vertical */
+  .form-row {
+    flex-direction: column;
+    /* Dirección vertical */
+    gap: 10px;
+    /* Espacio entre elementos */
+  }
+
+  /* Grupos ocupan ancho completo */
+  .form-row .form-group {
+    min-width: 100%;
+    /* Ancho completo */
+  }
+
+  /* Reduce tamaño del contenedor de captcha */
+  .captcha-container {
+    transform: scale(0.9);
+    /* Escala al 90% */
+  }
+
+  /* Botón submit ocupa ancho completo */
+  .btn-submit {
+    width: 100%;
+    /* Ancho completo */
+  }
+
+  /* Contenedor de enlaces en columna */
+  .links-container {
+    display: flex;
+    /* Flexbox para disposición */
+    flex-direction: column;
+    /* Dirección vertical */
+    gap: 0.5rem;
+    /* Espacio entre elementos */
+  }
+
+  /* Ajustes para enlaces */
+  .form-link {
+    margin: 0.25rem 0;
+    /* Margen vertical */
+    width: 80%;
+    /* Ancho relativo */
+    padding: 0.7rem;
+    /* Espaciado interno */
+  }
+
+  /* Contenedor de enlaces en columna */
+  .form-links-container {
+    flex-direction: column;
+    /* Dirección vertical */
+    align-items: center;
+    /* Centrado horizontal */
+    gap: 10px;
+    /* Espacio entre elementos */
+  }
+
+  /* Botones secundarios en columna */
+  .secondary-buttons {
+    flex-direction: column;
+    /* Dirección vertical */
+    align-items: center;
+    /* Centrado horizontal */
+    gap: 0.5rem;
+    /* Espacio entre elementos */
+  }
+
+  /* Ancho fijo para botones secundarios */
+  .btn-secondary {
+    width: 200px;
+    /* Ancho fijo */
+  }
+}

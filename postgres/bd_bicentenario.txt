@@ -1,0 +1,369 @@
+-- Database: bd_bicentenario
+
+-- DROP DATABASE IF EXISTS bd_bicentenario;
+
+CREATE DATABASE bd_bicentenario
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'es-BO'
+    LC_CTYPE = 'es-BO'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+CREATE TABLE USUARIO (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  correo varchar(100),
+  contrasena varchar(255),
+  genero varchar(50),
+  ciudad varchar(100),
+  pais varchar(50),
+  id_rol int
+);
+
+CREATE TABLE ROL (
+  id int PRIMARY KEY,
+  nombre_rol varchar(50),
+  descripcion varchar(255)
+);
+
+CREATE TABLE TIENE (
+  id_permiso int,
+  id_rol int
+);
+
+CREATE TABLE PERMISOS (
+  id int PRIMARY KEY,
+  nombre_permiso varchar(50),
+  descripcion varchar(255)
+);
+
+CREATE TABLE organiza (
+  id_usuario int,
+  id_evento int
+);
+
+CREATE TABLE EVENTO (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  descripcion varchar(1000),
+  fecha date,
+  ubicacion varchar(255),
+  estado varchar(50)
+);
+
+CREATE TABLE AGENDA (
+  id int PRIMARY KEY,
+  descripcion varchar(1000),
+  id_usuario int
+);
+
+CREATE TABLE EVENTO_CULTURAL (
+  id int PRIMARY KEY,
+  representacion_tipo varchar(255)
+);
+
+CREATE TABLE EVENTO_GASTRONOMICO (
+  id int PRIMARY KEY,
+  tipo_comida varchar(255)
+);
+
+CREATE TABLE EVENTO_ACADEMICO (
+  id int PRIMARY KEY,
+  tema varchar(255)
+);
+
+CREATE TABLE EVENTO_DEPORTIVO (
+  id int PRIMARY KEY,
+  tipo_deporte varchar(100)
+);
+
+CREATE TABLE HISTORIA (
+  id int PRIMARY KEY,
+  titulo varchar(255),
+  descripcion varchar(1000),
+  fecha date,
+  fecha_declaracion date,
+  pais varchar(100)
+);
+
+CREATE TABLE COMENTARIO (
+  id int PRIMARY KEY,
+  contenido text,
+  fecha_hora timestamp,
+  id_usuario int,
+  id_historia int
+);
+
+CREATE TABLE BATALLA (
+  id int PRIMARY KEY,
+  lugar varchar(255),
+  resultado varchar(255)
+);
+
+CREATE TABLE PARTICIPA_B (
+  id_personaje int,
+  id_batalla int
+);
+
+CREATE TABLE PERSONAJE (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  fecha_nacimiento date,
+  fecha_fallecimiento date,
+  contribucion varchar(1000)
+);
+
+CREATE TABLE PARTICIPA_I (
+  id_independencia int,
+  id_personaje int
+);
+
+CREATE TABLE INDEPENDENCIA (
+  id int PRIMARY KEY,
+  fecha_declaracion date,
+  pais varchar(60)
+);
+
+CREATE TABLE PRESIDENTE (
+  id int PRIMARY KEY,
+  periodo_gobierno varchar(255),
+  partido_politico varchar(255)
+);
+
+CREATE TABLE CULTURA (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  descripcion varchar(1000)
+);
+
+CREATE TABLE ETNIA (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  id_cultura int,
+  ubicacion varchar(255)
+);
+
+CREATE TABLE CRONOGRAMA (
+  id int PRIMARY KEY,
+  id_evento int,
+  fecha date,
+  hora_inicio time,
+  hora_fin time
+);
+
+CREATE TABLE ESTA (
+  id_cronograma int,
+  id_agenda int
+);
+
+CREATE TABLE PREFERENCIAS_USUARIO (
+  id int PRIMARY KEY,
+  clave varchar(100),
+  valor varchar(100),
+  id_usuario int
+);
+
+CREATE TABLE HISTORIAL_ACTIVIDADES (
+  id int PRIMARY KEY,
+  id_usuario int,
+  fecha_hora timestamp,
+  actividad varchar(255),
+  detalle varchar(1000)
+);
+
+CREATE TABLE AUDITORIA_ROLES (
+  id int PRIMARY KEY,
+  id_usuario int,
+  id_rol int,
+  fecha_hora timestamp,
+  accion varchar(100),
+  detalle varchar(1000)
+);
+
+CREATE TABLE MULTIMEDIA (
+  id int PRIMARY KEY,
+  id_usuario int,
+  url_archivo varchar(2048),
+  fecha_subida timestamp,
+  descripcion varchar(1000)
+);
+
+CREATE TABLE MULTIMEDIA_H (
+  id int PRIMARY KEY,
+  id_historia int
+);
+
+CREATE TABLE MULTIMEDIA_E (
+  id int PRIMARY KEY,
+  id_evento int
+);
+
+CREATE TABLE FUENTE (
+  id int PRIMARY KEY,
+  id_usuario int,
+  id_historia int,
+  tipo varchar(100),
+  titulo varchar(255),
+  autor varchar(255),
+  anio_publicacion date,
+  enlace varchar(2048),
+  descripcion varchar(1000)
+);
+
+CREATE TABLE PARTICIPANTES (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  tipo varchar(100),
+  descripcion varchar(1000)
+);
+
+CREATE TABLE EVENTO_PARTICIPANTE (
+  id_evento int,
+  id_participante int
+);
+
+CREATE TABLE RECURSOS (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  tipo varchar(100),
+  descripcion varchar(1000),
+  cantidad int,
+  disponibilidad varchar(50)
+);
+
+CREATE TABLE EVENTO_RECURSO (
+  id_evento int,
+  id_recurso int,
+  cantidad_utilizada int,
+  observaciones varchar(1000)
+);
+
+CREATE TABLE PATROCINADORES (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  tipo varchar(100),
+  contacto varchar(255),
+  descripcion varchar(1000)
+);
+
+CREATE TABLE EVENTO_PATROCINADOR (
+  id_evento int,
+  id_patrocinador int,
+  tipo_apoyo varchar(255),
+  monto_aportado int
+);
+
+CREATE TABLE COSTUMBRES_ETNIAS (
+  id int PRIMARY KEY,
+  id_etnia int,
+  nombre varchar(255),
+  descripcion varchar(1000),
+  categoria varchar(255)
+);
+
+CREATE TABLE IDIOMAS_ETNIA (
+  id_etnia int,
+  id_idioma int,
+  nivel_uso varchar(100),
+  estado varchar(50)
+);
+
+CREATE TABLE IDIOMA (
+  id int PRIMARY KEY,
+  nombre varchar(255),
+  familia_linguistica varchar(255)
+);
+
+ALTER TABLE USUARIO ADD FOREIGN KEY (id_rol) REFERENCES ROL (id);
+
+ALTER TABLE TIENE ADD FOREIGN KEY (id_permiso) REFERENCES PERMISOS (id);
+
+ALTER TABLE TIENE ADD FOREIGN KEY (id_rol) REFERENCES ROL (id);
+
+ALTER TABLE organiza ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE organiza ADD FOREIGN KEY (id_evento) REFERENCES EVENTO (id);
+
+ALTER TABLE AGENDA ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE EVENTO_CULTURAL ADD FOREIGN KEY (id) REFERENCES EVENTO (id);
+
+ALTER TABLE EVENTO_GASTRONOMICO ADD FOREIGN KEY (id) REFERENCES EVENTO (id);
+
+ALTER TABLE EVENTO_ACADEMICO ADD FOREIGN KEY (id) REFERENCES EVENTO (id);
+
+ALTER TABLE EVENTO_DEPORTIVO ADD FOREIGN KEY (id) REFERENCES EVENTO (id);
+
+ALTER TABLE COMENTARIO ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE COMENTARIO ADD FOREIGN KEY (id_historia) REFERENCES HISTORIA (id);
+
+ALTER TABLE BATALLA ADD FOREIGN KEY (id) REFERENCES HISTORIA (id);
+
+ALTER TABLE PARTICIPA_B ADD FOREIGN KEY (id_personaje) REFERENCES PERSONAJE (id);
+
+ALTER TABLE PARTICIPA_B ADD FOREIGN KEY (id_batalla) REFERENCES BATALLA (id);
+
+ALTER TABLE PERSONAJE ADD FOREIGN KEY (id) REFERENCES HISTORIA (id);
+
+ALTER TABLE PARTICIPA_I ADD FOREIGN KEY (id_independencia) REFERENCES INDEPENDENCIA (id);
+
+ALTER TABLE PARTICIPA_I ADD FOREIGN KEY (id_personaje) REFERENCES PERSONAJE (id);
+
+ALTER TABLE INDEPENDENCIA ADD FOREIGN KEY (id) REFERENCES HISTORIA (id);
+
+ALTER TABLE PRESIDENTE ADD FOREIGN KEY (id) REFERENCES PERSONAJE (id);
+
+ALTER TABLE CULTURA ADD FOREIGN KEY (id) REFERENCES HISTORIA (id);
+
+ALTER TABLE ETNIA ADD FOREIGN KEY (id_cultura) REFERENCES CULTURA (id);
+
+ALTER TABLE CRONOGRAMA ADD FOREIGN KEY (id_evento) REFERENCES EVENTO (id);
+
+ALTER TABLE ESTA ADD FOREIGN KEY (id_cronograma) REFERENCES CRONOGRAMA (id);
+
+ALTER TABLE ESTA ADD FOREIGN KEY (id_agenda) REFERENCES AGENDA (id);
+
+ALTER TABLE PREFERENCIAS_USUARIO ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE HISTORIAL_ACTIVIDADES ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE AUDITORIA_ROLES ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE AUDITORIA_ROLES ADD FOREIGN KEY (id_rol) REFERENCES ROL (id);
+
+ALTER TABLE MULTIMEDIA ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE MULTIMEDIA_H ADD FOREIGN KEY (id) REFERENCES MULTIMEDIA (id);
+
+ALTER TABLE MULTIMEDIA_H ADD FOREIGN KEY (id_historia) REFERENCES HISTORIA (id);
+
+ALTER TABLE MULTIMEDIA_E ADD FOREIGN KEY (id) REFERENCES MULTIMEDIA (id);
+
+ALTER TABLE MULTIMEDIA_E ADD FOREIGN KEY (id_evento) REFERENCES EVENTO (id);
+
+ALTER TABLE FUENTE ADD FOREIGN KEY (id_usuario) REFERENCES USUARIO (id);
+
+ALTER TABLE FUENTE ADD FOREIGN KEY (id_historia) REFERENCES HISTORIA (id);
+
+ALTER TABLE EVENTO_PARTICIPANTE ADD FOREIGN KEY (id_evento) REFERENCES EVENTO (id);
+
+ALTER TABLE EVENTO_PARTICIPANTE ADD FOREIGN KEY (id_participante) REFERENCES PARTICIPANTES (id);
+
+ALTER TABLE EVENTO_RECURSO ADD FOREIGN KEY (id_evento) REFERENCES EVENTO (id);
+
+ALTER TABLE EVENTO_RECURSO ADD FOREIGN KEY (id_recurso) REFERENCES RECURSOS (id);
+
+ALTER TABLE EVENTO_PATROCINADOR ADD FOREIGN KEY (id_evento) REFERENCES EVENTO (id);
+
+ALTER TABLE EVENTO_PATROCINADOR ADD FOREIGN KEY (id_patrocinador) REFERENCES PATROCINADORES (id);
+
+ALTER TABLE COSTUMBRES_ETNIAS ADD FOREIGN KEY (id_etnia) REFERENCES ETNIA (id);
+
+ALTER TABLE IDIOMAS_ETNIA ADD FOREIGN KEY (id_etnia) REFERENCES ETNIA (id);
+
+ALTER TABLE IDIOMAS_ETNIA ADD FOREIGN KEY (id_idioma) REFERENCES IDIOMA (id);
