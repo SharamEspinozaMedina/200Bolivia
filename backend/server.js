@@ -15,6 +15,7 @@ require('dotenv').config(); // Sin ruta, porque ahora está en la misma carpeta
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('../frontend')); // Ajusta la ruta según tu estructura
 
 // Almacenamiento temporal de códigos
 const verificationCodes = {};
@@ -129,6 +130,84 @@ app.post('/api/verify-code', (req, res) => {
         res.json({ success: true, message: 'Código verificado correctamente' });
     } else {
         res.status(400).json({ error: 'Código inválido o expirado' });
+    }
+});
+
+// Agrega esto al final de server.js, antes de app.listen()
+
+// Almacén temporal para tokens de recuperación (en producción usa DB)
+const resetTokens = {};
+
+// Endpoint para solicitar recuperación de contraseña
+app.post('/api/request-password-reset', async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        // 1. Verificar si el email existe
+        const result = await query('SELECT * FROM USUARIO WHERE correo = $1', [email]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Email no registrado' });
+        }
+
+        // 2. Generar token único
+        const token = require('crypto').randomBytes(32).toString('hex');
+        const expiresAt = new Date(Date.now() + 3600000); // 1 hora de expiración
+
+        // 3. Guardar token (en producción usa una tabla en DB)
+        resetTokens[token] = {
+            email,
+            expiresAt
+        };
+
+        // 4. Enviar email con enlace
+
+        //const resetLink = `http://localhost:3000/frontend/cambiar_contrasenia.html?token=${token}`;
+        const resetLink = `file:///D:/user/Escritorio/200Bolivia/frontend/cambiar_contrasenia.html?token=${token}`;
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Recuperación de Contraseña',
+            html: `
+                <p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>
+                <a href="${resetLink}">${resetLink}</a>
+                <p>Este enlace expirará en 1 hora.</p>
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.json({ success: true, message: 'Enlace de recuperación enviado' });
+
+    } catch (error) {
+        console.error('Error en recuperación:', error);
+        res.status(500).json({ error: 'Error al procesar la solicitud' });
+    }
+});
+
+// Endpoint para actualizar contraseña
+app.post('/api/reset-password', async (req, res) => {
+    const { token, newPassword } = req.body;
+
+    try {
+        // 1. Verificar token válido y no expirado
+        const tokenData = resetTokens[token];
+        if (!tokenData || new Date() > new Date(tokenData.expiresAt)) {
+            return res.status(400).json({ error: 'Enlace inválido o expirado' });
+        }
+
+        // 2. Actualizar contraseña en BD (deberías hashearla en producción)
+        await query(
+            'UPDATE USUARIO SET contrasena = $1 WHERE correo = $2',
+            [newPassword, tokenData.email]
+        );
+
+        // 3. Eliminar token usado
+        delete resetTokens[token];
+
+        res.json({ success: true, message: 'Contraseña actualizada' });
+
+    } catch (error) {
+        console.error('Error actualizando contraseña:', error);
+        res.status(500).json({ error: 'Error al actualizar contraseña' });
     }
 });
 
