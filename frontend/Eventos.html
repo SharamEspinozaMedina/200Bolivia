@@ -15,13 +15,26 @@
   <!-- Navbar se carga aquí con sus propios estilos -->
   <div id="navbar-container"></div>
 
+  <!--el cuerpo-->
   <main class="container mt-4">
-    <h1>Eventos del Bicentenario</h1>
-    <p>Próximamente: calendario de eventos conmemorativos.</p>
+    <h1 class="main-title">Eventos del Bicentenario</h1>
+
+    <!-- Filtros -->
+    <div class="filters mb-4">
+      <button class="filter-btn active" data-category="all">Todos</button>
+      <button class="filter-btn" data-category="cultural">Culturales</button>
+      <button class="filter-btn" data-category="gastronomico">Gastronómicos</button>
+      <button class="filter-btn" data-category="academico">Académicos</button>
+      <button class="filter-btn" data-category="deportivo">Deportivos</button>
+    </div>
+
+    <!-- Contenedor de eventos -->
+    <div id="eventos-container" class="eventos-grid"></div>
   </main>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/eventos.js"></script>
   <script>
     // Cargar el navbar
     $(function () {
