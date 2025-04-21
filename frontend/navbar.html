@@ -1,0 +1,53 @@
+<!-- navbar.html -->
+<nav class="navbar navbar-expand-sm custom-navbar">
+    <div class="container-fluid">
+        <!-- Logo y título a la izquierda -->
+        <div class="navbar-brand-container">
+            <img src="recursos/bandera.jpg" alt="Logo Bicentenario" width="50" height="50">
+            <span class="navbar-title">Bicentenario de Bolivia</span>
+        </div>
+
+        <!-- Elementos de navegación centrados -->
+        <div class="navbar-nav-container">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="ventana_principal.html" id="inicio-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Eventos.html" id="eventos-link">Eventos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dondomen-dropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dondómen
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dondomen-dropdown">
+                        <li>
+                            <h6 class="dropdown-header">Actión</h6>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Aceptar actos</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <h6 class="dropdown-header">Saunción</h6>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Saunción</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" id="disabled-link">Disabled</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Buscador a la derecha -->
+        <div class="navbar-search-container">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Buscar...">
+                <button class="btn search-button" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>
