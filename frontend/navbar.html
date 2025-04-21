@@ -1,13 +1,17 @@
 <!-- navbar.html -->
+<!-- Enlace al CSS específico del navbar -->
+<link rel="stylesheet" href="css/navbar.css">
+
+<!-- Estructura HTML del navbar -->
 <nav class="navbar navbar-expand-sm custom-navbar">
     <div class="container-fluid">
-        <!-- Logo y título a la izquierda -->
+        <!-- Logo y título -->
         <div class="navbar-brand-container">
             <img src="recursos/bandera.jpg" alt="Logo Bicentenario" width="50" height="50">
             <span class="navbar-title">Bicentenario de Bolivia</span>
         </div>
 
-        <!-- Elementos de navegación centrados -->
+        <!-- Menú de navegación -->
         <div class="navbar-nav-container">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -16,6 +20,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Eventos.html" id="eventos-link">Eventos</a>
                 </li>
+                <!-- Menú desplegable -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dondomen-dropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,7 +47,7 @@
             </ul>
         </div>
 
-        <!-- Buscador a la derecha -->
+        <!-- Buscador -->
         <div class="navbar-search-container">
             <form class="d-flex" role="search">
                 <input class="form-control me-2 search-input" type="search" placeholder="Buscar...">
